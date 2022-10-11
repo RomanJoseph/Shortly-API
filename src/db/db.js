@@ -18,7 +18,4 @@ const connection = new Pool({
   database
 });
 
-const query = connection.query("SELECT * FROM users;")
-query.then(result => console.log(result.rows))
-
 export { connection }
