@@ -1,8 +1,12 @@
 import express from "express";
-import { shortUrl } from "../controller/shortUrlController.js";
+import { deleteUrl, openUrl, shortlyUrl, urlById, userData } from "../controller/shortUrlController.js";
 import { authMiddleware } from "../middleware/authMiddleware.js"
 const router = express.Router()
 
-router.post("/urls/shorten", authMiddleware, shortUrl)
+router.post("/urls/shorten", authMiddleware, shortlyUrl)
+router.get("/urls/:id", urlById)
+router.get("/urls/open/:shortUrl", openUrl)
+router.delete("/urls/:id",authMiddleware, deleteUrl)
+router.get("/users/me", authMiddleware, userData)
 
 export default router

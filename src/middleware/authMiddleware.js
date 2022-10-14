@@ -8,7 +8,7 @@ async function authMiddleware(req, res, next) {
     }
 
     try {
-        const session = await connection.query('SELECT * FROM sessions WHERE token = $1;', [token])
+        const session = await connection.query('SELECT * FROM sessions JOIN users ON userId = users.id WHERE token = $1;', [token])
 
         if (!session.rows[0].userid) {
             return res.sendStatus(400)
