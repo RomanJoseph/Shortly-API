@@ -103,4 +103,14 @@ async function userData(req, res) {
     }
 }
 
-export { shortlyUrl, urlById, openUrl, deleteUrl, userData }
+async function ranking(req, res){
+    try{
+        const ranking = await connection.query('SELECT users.id, users.name, COUNT(urls) AS linksCount, SUM(visitCount) AS visitCount FROM urls JOIN users ON userId=users.id GROUP BY users.id ORDER BY SUM(visitcount) DESC LIMIT 10;')
+        return res.send(ranking.rows)
+    }catch(error){
+        console.log(error)
+        return res.sendStatus(500)
+    }
+}
+
+export { shortlyUrl, urlById, openUrl, deleteUrl, userData, ranking }
