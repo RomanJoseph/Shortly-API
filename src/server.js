@@ -1,4 +1,4 @@
-import express, { application } from "express"
+import express from "express"
 import cors from "cors"
 import authRoutes from "./routes/authRoute.js"
 import shortUrlRoutes from "./routes/shortUrlRoute.js"
